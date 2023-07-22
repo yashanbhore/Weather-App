@@ -39,12 +39,12 @@
         </div>
 
         <script>
-                const apiKey='04f12656aad42c2a84c1954d84d1746b';
+                const apiKey='a7f69c8603471eb18ca3f643f125c711';
                 const apiUrl='https://api.openweathermap.org/data/2.5/weather?units=metric&q=';
                 
                 const searchBox = document.querySelector(".search input");
                 const searchBtn = document.querySelector(".search button");
-                const weatherIcon=document.querySelector("weather-icon");
+                const weatherIcon = document.querySelector(".weather-icon");
 
                 async function checkweather(city){
                         const response=await fetch(apiUrl+city+`&appid=${apiKey}`);
@@ -64,26 +64,18 @@
                                 document.querySelector(".humidity").innerHTML=data.main.humidity;
                                 document.querySelector(".wind").innerHTML=data.wind.speed+"km/h";
         
-                                if(data.weather[0].main=="Clouds")
-                                {
-                                      weatherIcon.src="images/clouds.png";  
+                                if (data.weather[0].main == "Clouds") {
+                                if (weatherIcon) weatherIcon.src = "images/clouds.png";
+                                } else if (data.weather[0].main == "Clear") {
+                                if (weatherIcon) weatherIcon.src = "images/clear.png";
+                                } else if (data.weather[0].main == "Rain") {
+                                if (weatherIcon) weatherIcon.src = "images/rain.png";
+                                } else if (data.weather[0].main == "Drizzle") {
+                                if (weatherIcon) weatherIcon.src = "images/drizzle.png";
+                                } else if (data.weather[0].main == "Mist") {
+                                if (weatherIcon) weatherIcon.src = "images/mist.png";
                                 }
-                                else if(data.weather[0].main=="Clear")
-                                {
-                                      weatherIcon.src="images/clear.png";  
-                                }
-                                else if(data.weather[0].main=="Rain")
-                                {
-                                      weatherIcon.src="images/rain.png";  
-                                }
-                                else if(data.weather[0].main=="Drizzle")
-                                {
-                                      weatherIcon.src="images/drizzle.png";  
-                                }
-                                else if(data.weather[0].main=="Mist")
-                                {
-                                      weatherIcon.src="images/mist.png";  
-                                }
+
         
                                 document.querySelector(".weather").style.display="block";
                                 document.querySelector(".error").style.display="none";
